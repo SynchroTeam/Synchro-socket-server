@@ -1,18 +1,7 @@
 FROM ubuntu:20.04
 
-# Install SFTP and other linux modules
-RUN apt-get update && apt-get install -y openssh-server && \
-    mkdir /var/run/sshd && \
-    apt-get install augeas-tools -y && \
-    augtool --autosave 'set /files/etc/ssh/sshd_config/PasswordAuthentication yes' && \
-    addgroup sftp-only && \
-    apt install nano -y
-
-
-COPY ./Receiver/ubuntu/sshd_config  /etc/ssh/sshd_config
-
-# to not list all users home directories
-RUN chmod 701 /home
+# Update linux
+RUN apt-get update && apt-get install
 
 WORKDIR /code/
 COPY . .
