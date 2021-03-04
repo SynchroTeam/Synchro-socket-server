@@ -1,2 +1,2 @@
-# synchro-socket-server
-Synchro socket server
+# Synchro server
+Synchro made websocket easy and accessible
