@@ -9,7 +9,6 @@ on:
 jobs:
 
   Build:
-
     runs-on: ubuntu-latest
     env:
       PG_PASS: ${{ secrets.PG_PASS }}
@@ -25,7 +24,6 @@ jobs:
       run: docker-compose -f docker-compose-test.yml build
 
   Test:
-
     runs-on: ubuntu-latest
     env:
       PG_PASS: ${{ secrets.PG_PASS }}
