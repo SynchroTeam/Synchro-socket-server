@@ -19,6 +19,7 @@ jobs:
       PORT: 8000
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout code # checking our the code at current commit that triggers the workflow
+      uses: actions/checkout@v2
     - name: Build the docker-compose stack
       run: docker-compose -f docker-compose-test.yml up --abort-on-container-exit
