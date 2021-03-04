@@ -8,7 +8,23 @@ on:
 
 jobs:
 
-  build:
+  Build:
+
+    runs-on: ubuntu-latest
+    env:
+      PG_PASS: ${{ secrets.PG_PASS }}
+      DATABASE_URL: postgresql://postgres:${{ secrets.SECRET_PASSWORD }}@postgres/postgres
+      DJANGO_SETTINGS_MODULE: app_name.settings.dev
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      PORT: 8000
+
+    steps:
+    - name: Checkout code # checking our the code at current commit that triggers the workflow
+      uses: actions/checkout@v2
+    - name: Build the docker-compose stack
+      run: docker-compose -f docker-compose-test.yml build
+
+  Test:
 
     runs-on: ubuntu-latest
     env:
