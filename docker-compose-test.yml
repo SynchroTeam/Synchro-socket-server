@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+
+  account:
+    container_name: synchro-server
+    tty: true
+    build: .
+    command: 
+    - /bin/sh
+    - -c
+    - |
+      python3 ./manage.py test
+
+# Network ++++++++++++++++++++++++++++++++++++++++++++
+# https://docs.docker.com/compose/networking/
+networks:
+  mft-acount-network: # Create network
+    driver: bridge # Mode
