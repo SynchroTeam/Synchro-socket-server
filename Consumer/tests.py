@@ -3,7 +3,6 @@ from django.test import RequestFactory, TestCase
 from django.test import Client 
 from django.contrib.auth import authenticate, get_user_model
 User = get_user_model()
-
 class CreateCunsumer(TestCase):
     def setUp(self):
         # Every test needs access to the request factory.
