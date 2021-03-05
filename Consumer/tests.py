@@ -1,9 +1,6 @@
 from django.contrib.auth.models import AnonymousUser, User
 from django.test import RequestFactory, TestCase
 
-
-
-
 class CreateCunsumer(TestCase):
     def setUp(self):
         # Every test needs access to the request factory.
