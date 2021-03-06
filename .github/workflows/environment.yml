@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+          - 'environment'
+
+jobs:
+
+  Test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code # checking our the code at current commit that triggers the workflow
+      uses: actions/checkout@v2
+    - name: Build the docker-compose
+      run: docker-compose -f docker-compose.yml build
+    - name: Run the docker-compose
+      run: docker-compose -f docker-compose.yml up -d
+    - name: Ping the docker-compose
+      run: ping 19.4.0.35:8080
