@@ -46,7 +46,8 @@ THIED_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'Consumer'
+    'Consumer',
+    'Socket'
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIED_PARTY_APPS
