@@ -15,5 +15,5 @@ services:
 # Network ++++++++++++++++++++++++++++++++++++++++++++
 # https://docs.docker.com/compose/networking/
 networks:
-  mft-acount-network: # Create network
+  synchro-network: # Create network
     driver: bridge # Mode
