@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  DockerImage:
+  DockerImageTest:
     runs-on: ubuntu-latest
 
     steps:
