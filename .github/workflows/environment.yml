@@ -1,4 +1,4 @@
-name: Development testing enviroment
+name: Docker development testing enviroment
 
 on:
   push:
@@ -18,4 +18,6 @@ jobs:
     - name: Run the docker-compose
       run: docker-compose -f docker-compose.yml up -d
     - name: Ping the docker-compose
-      run: ping 19.4.0.35:8080
+      run: timeout 4 telnet 19.4.0.35:8080
+    - name: Close docker-compose
+      run: docker-compose -f docker-compose.yml down
