@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  Test:
+  DockerImage:
     runs-on: ubuntu-latest
 
     steps:
