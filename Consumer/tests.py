@@ -20,6 +20,6 @@ class SignupTest(TestCase):
             'password': 'top_secret'
         })
         
-        # JWT = respose.json()['access']
         
+        self.assertTrue(respose.json()['access'])
         self.assertEqual(respose.status_code, 201)

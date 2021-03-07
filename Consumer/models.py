@@ -8,7 +8,7 @@ from decouple import config
 import uuid
 
 # https://github.com/Tivix/django-rest-auth/issues/464
-class ConsumerManager(BaseUserManager):
+class UserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 
     use_in_migrations = True
@@ -42,7 +42,7 @@ class ConsumerManager(BaseUserManager):
         return self._create_user(username, email, password, **extra_fields)
 
 
-class Consumer(AbstractUser):
+class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     email = models.EmailField(_('email address'), unique=True)
@@ -55,7 +55,7 @@ class Consumer(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
-    objects = ConsumerManager()
+    objects = UserManager()
 
     def get_absolute_url(self):
         return reverse("username:detail", kwargs={"email": self.email})
