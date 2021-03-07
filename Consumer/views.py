@@ -9,6 +9,7 @@ Consumer = get_user_model()
 
 # ====================================== LOGIN ========================================================
 @api_view(['POST'])
+
 @permission_classes([AllowAny])
 def get_tokens_for_user(request):
 

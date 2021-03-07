@@ -11,7 +11,6 @@ import jwt
 # Create your views here.
 
 @api_view(['POST'])
-
 def CreateChannel(request):
     permission_classes = [customIsAuthenticated]
 

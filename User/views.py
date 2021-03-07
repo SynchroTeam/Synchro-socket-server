@@ -12,7 +12,6 @@ import jwt
 
 @api_view(['POST'])
 def create_user(request):
-
     permission_classes = [customIsAuthenticated]
 
     # get token Payload
