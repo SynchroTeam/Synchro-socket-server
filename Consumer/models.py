@@ -5,10 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
 from decouple import config
-import json
-from django.contrib.auth import authenticate, get_user_model
 import uuid
-from django.db import models
 
 # https://github.com/Tivix/django-rest-auth/issues/464
 class ConsumerManager(BaseUserManager):
