@@ -23,7 +23,6 @@ First create the docker-compose network, then launch the Server
 docker-compose up
 ```
 <br>
-<br>
 
 ### With Bash
 Set .ENV file
@@ -41,7 +40,7 @@ Make migrations
 python3 manage.py makemigrations
 ```
 
-Run migrationa
+Run migrations
 ```bash
 python3 manage.py migrate
 ```
@@ -49,5 +48,22 @@ python3 manage.py migrate
 Launch the Server
 
 ```bash
-python3 manage.py migrate
+python3 manage.py runserver
+```
+
+<br>
+<br>
+
+## Run test environment
+<br>
+<br>
+
+### With Docker compose
+``` bash 
+docker-compose  -f docker-compose-test.yml up
+```
+
+### With Bash
+``` bash 
+python3 manage.py runserver
 ```
