@@ -1,4 +1,3 @@
-
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from decouple import config
@@ -42,5 +41,5 @@ def create_user(request):
 
 
     return Response({
-        'JWT_USER': JWT_USER,
+        'JWT_USER': JWT_USER
     }, status = 200)
