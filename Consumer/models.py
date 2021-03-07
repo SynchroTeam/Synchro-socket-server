@@ -78,7 +78,7 @@ class User(AbstractUser):
 
         # for JTW payload
         decodeJTW['permisions'] = permisions
-        decodeJTW['groups'] = groups
+        # decodeJTW['groups'] = groups
         decodeJTW['username'] = self.username
 
         #encode
