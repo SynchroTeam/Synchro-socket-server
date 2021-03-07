@@ -1,14 +1,13 @@
-name: Docker Test
+name: Development testing enviroment
 
 on:
   push:
     branches:
-          - 'master'
-          - 'develop'
+          - 'environment'
 
 jobs:
 
-  DockerImageTest:
+  DevENVTest:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,4 +16,8 @@ jobs:
     - name: Set ENV
       run: cp ./.env.example  ./.env
     - name: Build the docker-compose
-      run: docker-compose -f docker-compose-test.yml up --abort-on-container-exit
+      run: docker-compose -f docker-compose.yml build
+    - name: Run the docker-compose
+      run: docker-compose -f docker-compose.yml up -d
+    - name: Ping the docker-compose
+      run: ping 19.4.0.35:8080

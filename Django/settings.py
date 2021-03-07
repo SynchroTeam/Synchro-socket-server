@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's46%!k0e*ij%282&&-j#ie856li#0(d0@#cgcaz)6^3nbjjo%l'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,17 +44,20 @@ DEFAULT_APPS = [
 ]
 
 THIED_PARTY_APPS = [
-
+    'rest_framework',
 ]
 
 LOCAL_APPS = [
-    'Consumer'
+    'Consumer',
+    'Socket',
+    'Channel',
+    'User'
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIED_PARTY_APPS
 
 
-AUTH_USER_MODEL = 'Consumer.User'
+AUTH_USER_MODEL = 'Consumer.Consumer'
 
 # Application definition
 
@@ -115,6 +120,31 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'User.serializers.UserDetailsSerializer'
+}
+
+# JWT
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'SIGNING_KEY': config('SECRET_KEY'),
+    'VERIFYING_KEY': config('SECRET_KEY'),
+    'ALGORITHM': 'HS256',
+}
 
 
 # Internationalization

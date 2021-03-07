@@ -3,33 +3,34 @@ services:
 
   # Service
   backend:
-    container_name: mft-receiver
+    container_name: synchro-server
     init: true
     tty: true
     restart: always
     build: .
     volumes:
-      #              Host:container
+      # Host:container
       - .:/code
-      #- ./Receiver/ubuntu/etc/shadow:/etc/
     command:  
       - /bin/sh
       - -c
       - |
         ls
-        python3 manage.py sftpServer && python3 manage.py runserver 0.0.0.0:8080
+        python3 manage.py makemigrations &&
+        python3 manage.py migrate &&
+        python3 manage.py runserver 0.0.0.0:${DOCKER_SYBCHRO_PORT}
     # Join network
     networks:
-      sftp-receiver-network:
-        ipv4_address: 19.4.0.35
+      synchro-network:
+        ipv4_address: ${DOCKER_SYBCHRO_IP}
  
 
 # Network ++++++++++++++++++++++++++++++++++++++++++++
 # https://docs.docker.com/compose/networking/
 networks:
-  sftp-receiver-network: # Create network
+  synchro-network: # Create network
     driver: bridge # Mode
     ipam:
      config:
-       - subnet: 19.4.0.0/16
-         gateway: 19.4.0.1
+       - subnet: ${DOCKER_SYBCHRO_NET_SUBNET}
+         gateway: ${DOCKER_SYBCHRO_NET_GATEWAY}
