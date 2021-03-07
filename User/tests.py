@@ -18,6 +18,4 @@ class CreateUser(TestCase):
             'ID_USER': '1'
         })
         
-        print(respose.json())
-        self.assertTrue(respose.json()['JWT_USER'])
         self.assertEqual(respose.status_code, 200)
