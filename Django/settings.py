@@ -57,7 +57,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIED_PARTY_APPS
 
 
-AUTH_USER_MODEL = 'Consumer.Consumer'
+AUTH_USER_MODEL = 'Consumer.User'
 
 # Application definition
 
@@ -130,7 +130,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
-
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'User.serializers.UserDetailsSerializer'
 }
@@ -138,8 +137,9 @@ REST_AUTH_SERIALIZERS = {
 # JWT
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    # 'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=999),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=999),
     'AUTH_HEADER_TYPES': ('Bearer',),
     'SIGNING_KEY': config('SECRET_KEY'),
     'VERIFYING_KEY': config('SECRET_KEY'),
