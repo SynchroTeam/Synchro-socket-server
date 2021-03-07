@@ -13,6 +13,7 @@ import jwt
 @permission_classes([customIsAuthenticated])
 def create_user(request):
 
+    print('Create user')
     # get token Payload
     token = request.headers['Authorization']
     tokenPayload = tokenDecoder(token)
