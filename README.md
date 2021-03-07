@@ -51,3 +51,16 @@ Launch the Server
 ```bash
 python3 manage.py migrate
 ```
+
+
+## Run development environment
+
+### With Docker compose
+``` bash 
+docker-compose  -f docker-compose-test.yml up
+```
+
+### With Bash
+``` bash 
+python3 manage.py runserver
+```
