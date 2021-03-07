@@ -77,9 +77,11 @@ class User(AbstractUser):
         groups =  list(self.groups.values_list('name',flat = True)) # QuerySet Object
 
         # for JTW payload
-        decodeJTW['permisions'] = permisions
+        decodeJTW['PERMISIONS'] = permisions
         # decodeJTW['groups'] = groups
-        decodeJTW['username'] = self.username
+        decodeJTW['USERNAME'] = self.username
+        decodeJTW['ID_CONSUMER'] = str(self.id)
+        decodeJTW['EXP'] = decodeJTW['exp']
 
         #encode
         encoded = jwt.encode(decodeJTW, config('SECRET_KEY'), algorithm="HS256")
