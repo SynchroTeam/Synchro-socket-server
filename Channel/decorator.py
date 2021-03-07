@@ -10,8 +10,6 @@ class customIsAuthenticated(BasePermission):
         
         accessToken = request.headers['Authorization']
 
-        print(accessToken)
-
         try:
             decodeJTW = tokenDecoder(accessToken)
             return True

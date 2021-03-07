@@ -30,4 +30,6 @@ class CreateChannel(TestCase):
 
         respose = self.client.post("/api/v0/channel/create/",{})
         
+        self.assertTrue(respose.json()['ID_CHANNEL'])
+        self.assertTrue(respose.json()['BLUE_PRINT'])
         self.assertEqual(respose.status_code, 200)
