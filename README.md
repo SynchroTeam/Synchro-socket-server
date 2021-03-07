@@ -41,7 +41,7 @@ Make migrations
 python3 manage.py makemigrations
 ```
 
-Run migrationa
+Run migrations
 ```bash
 python3 manage.py migrate
 ```
@@ -49,7 +49,7 @@ python3 manage.py migrate
 Launch the Server
 
 ```bash
-python3 manage.py migrate
+python3 manage.py runserver
 ```
 
 
