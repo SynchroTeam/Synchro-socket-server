@@ -40,6 +40,7 @@ def create_user(request):
 
     JWT_USER = jwt.encode(jwt_payload, user_key, algorithm="HS256")
 
+    print(JWT_USER)
 
     return Response({
         'JWT_USER': JWT_USER

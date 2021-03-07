@@ -130,7 +130,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
-
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'User.serializers.UserDetailsSerializer'
 }
@@ -138,6 +137,7 @@ REST_AUTH_SERIALIZERS = {
 # JWT
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
 SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
