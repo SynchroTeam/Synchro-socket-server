@@ -15,10 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v0/consumer/', include('Consumer.urls'), name="Consumer"),
     path('api/v0/channel/', include('Channel.urls'), name="Channel"),
-    path('api/v0/user/', include('User.urls'), name="User")
+    path('api/v0/user/', include('User.urls'), name="User"),
+    path('docs/', include_docs_urls(title='API DOC')),
+    path('schema', get_schema_view(
+            title="BlogAPI",
+            description="API for all things ...",
+            version="1.0.0",
+        ), name='openapi-schema'
+    )
 ]
