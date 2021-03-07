@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-User = get_user_model()
+Consumer = get_user_model()
 
 # ====================================== LOGIN ========================================================
 @api_view(['POST'])
@@ -15,7 +15,7 @@ def get_tokens_for_user(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
 
-    user = User.objects.get(username=username)
+    user = Consumer.objects.get(username=username)
     
     if user is None:
         return Response({ "message": "Username found"}, status=400)

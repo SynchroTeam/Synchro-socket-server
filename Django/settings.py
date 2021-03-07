@@ -57,7 +57,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIED_PARTY_APPS
 
 
-AUTH_USER_MODEL = 'Consumer.User'
+AUTH_USER_MODEL = 'Consumer.Consumer'
 
 # Application definition
 

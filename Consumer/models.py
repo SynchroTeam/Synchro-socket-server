@@ -11,7 +11,7 @@ import uuid
 from django.db import models
 
 # https://github.com/Tivix/django-rest-auth/issues/464
-class UserManager(BaseUserManager):
+class ConsumerManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 
     use_in_migrations = True
@@ -45,7 +45,7 @@ class UserManager(BaseUserManager):
         return self._create_user(username, email, password, **extra_fields)
 
 
-class User(AbstractUser):
+class Consumer(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     email = models.EmailField(_('email address'), unique=True)
@@ -58,7 +58,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
-    objects = UserManager()
+    objects = ConsumerManager()
 
     def get_absolute_url(self):
         return reverse("username:detail", kwargs={"email": self.email})
