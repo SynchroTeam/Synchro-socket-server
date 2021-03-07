@@ -4,7 +4,7 @@ A simple service with a microservice architecture in the same source code. build
 
 <br>
 
-Development requirement:
+Development requirements:
 <li>TDD</li>
 <li>GitFow</li>
 
@@ -36,12 +36,12 @@ Install dependencies
 python3 -m pip install -r requirements.txt
 ```
 
-Make migration
+Make migrations
 ```bash
 python3 manage.py makemigrations
 ```
 
-
+Run migrationa
 ```bash
 python3 manage.py migrate
 ```
