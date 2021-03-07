@@ -31,5 +31,5 @@ class CreateUser(TestCase):
             'ID_CHANNEL' : ID_CHANNEL,
             'ID_USER': '1'
         })
-        
+
         self.assertEqual(respose.status_code, 200)
