@@ -32,7 +32,7 @@ def CreateChannel(request):
 
     }
 
-    BLUE_PRINT = jwt.encode(CHANNEL_CONFIG, config('SECRET_KEY'), algorithm="HS256")
+    BLUE_PRINT = jwt.encode(CHANNEL_CONFIG, channel_key, algorithm="HS256")
 
     return Response({
         'ID_CHANNEL': ID_CHANNEL,

@@ -16,7 +16,7 @@ def get_tokens_for_user(request):
     password = request.POST.get("password")
 
     user = Consumer.objects.get(username=username)
-    
+
     if user is None:
         return Response({ "message": "Username found"}, status=400)
 
@@ -27,6 +27,7 @@ def get_tokens_for_user(request):
         return Response({
             'refresh': tokens['refresh'],
             'access': tokens['access'],
+            # 'ID_CONSUMER': user.id
         }, status=201)
 
     else:

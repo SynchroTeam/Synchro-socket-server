@@ -12,7 +12,6 @@ import uuid
 
 class CreateChannel(TestCase):
 
-
     def test_details(self):
 
         dt = datetime.datetime.strptime('2022-02-09', '%Y-%m-%d')
