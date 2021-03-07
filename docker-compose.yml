@@ -18,11 +18,11 @@ services:
         ls
         python3 manage.py makemigrations &&
         python3 manage.py migrate &&
-        python3 manage.py runserver 0.0.0.0:8080
+        python3 manage.py runserver 0.0.0.0:${DOCKER_SYBCHRO_PORT}
     # Join network
     networks:
       synchro-network:
-        ipv4_address: 19.4.0.35
+        ipv4_address: ${DOCKER_SYBCHRO_IP}
  
 
 # Network ++++++++++++++++++++++++++++++++++++++++++++
@@ -32,5 +32,5 @@ networks:
     driver: bridge # Mode
     ipam:
      config:
-       - subnet: 19.4.0.0/16
-         gateway: 19.4.0.1
+       - subnet: ${DOCKER_SYBCHRO_NET_SUBNET}
+         gateway: ${DOCKER_SYBCHRO_NET_GATEWAY}

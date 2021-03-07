@@ -5,13 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
 from decouple import config
-import json
-from django.contrib.auth import authenticate, get_user_model
 import uuid
-from django.db import models
 
 # https://github.com/Tivix/django-rest-auth/issues/464
-class UserManager(BaseUserManager):
+class ConsumerManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 
     use_in_migrations = True
@@ -45,7 +42,7 @@ class UserManager(BaseUserManager):
         return self._create_user(username, email, password, **extra_fields)
 
 
-class User(AbstractUser):
+class Consumer(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     email = models.EmailField(_('email address'), unique=True)
@@ -58,7 +55,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
-    objects = UserManager()
+    objects = ConsumerManager()
 
     def get_absolute_url(self):
         return reverse("username:detail", kwargs={"email": self.email})
@@ -77,9 +74,11 @@ class User(AbstractUser):
         groups =  list(self.groups.values_list('name',flat = True)) # QuerySet Object
 
         # for JTW payload
-        decodeJTW['permisions'] = permisions
+        decodeJTW['PERMISIONS'] = permisions
         # decodeJTW['groups'] = groups
-        decodeJTW['username'] = self.username
+        decodeJTW['USERNAME'] = self.username
+        decodeJTW['ID_CONSUMER'] = str(self.id)
+        decodeJTW['EXP'] = decodeJTW['exp']
 
         #encode
         encoded = jwt.encode(decodeJTW, config('SECRET_KEY'), algorithm="HS256")
