@@ -8,8 +8,6 @@ class customIsAuthenticated(BasePermission):
 
     def has_permission(self,request,*args,**kwargs):
         
-        print("hellow")
-        
         accessToken = request.headers['Authorization']
 
         try:

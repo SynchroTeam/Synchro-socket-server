@@ -1,13 +1,27 @@
 from django.test import  TestCase
 from django.test import Client 
-import jwt
 from decouple import config
+import jwt
+import time
+import datetime
+import uuid
 
 class CreateUser(TestCase):
 
     def test_details(self):
 
-        AUTHORIZATION = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE1MTI4NTQ2LCJqdGkiOiJiNmI5NGFiMzg0MGQ0ZjMyOWVkZjg1YWZlMmE5NGQzZSIsInVzZXJfaWQiOiIxY2ZlMDNjYy0zODY3LTQ0MzgtODZlZi03MDAyNWQxNjc2NDEiLCJQRVJNSVNJT05TIjpbXSwiVVNFUk5BTUUiOiJqYWNvYiIsIklEX0NPTlNVTUVSIjoiMWNmZTAzY2MtMzg2Ny00NDM4LTg2ZWYtNzAwMjVkMTY3NjQxIiwiRVhQIjoxNjE1MTI4NTQ2fQ.eihN8l5ZddMRPH4hu5HxvUORbMK7OEHM7HxC8prTlvs'
+        dt = datetime.datetime.strptime('2022-02-09', '%Y-%m-%d')
+
+        JTW_CONSUMER = {
+            'EXP': time.mktime(dt.timetuple()),
+            'exp':  time.mktime(dt.timetuple()),
+            'ID_CONSUMER': str(uuid.uuid1()),
+            'PERMISIONS': [],
+            'USERNAME': 'James'
+        }
+
+        AUTHORIZATION = jwt.encode(JTW_CONSUMER, config('SECRET_KEY'), algorithm="HS256")
+
         ID_CHANNEL = "89edfa70-7f4c-11eb-912d-af4bf29ca96d"
         # BLUE_PRINT =  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.6_IVKSoFcLzSmvH82p1MpE2k0iIQIp9H1TErw7i4vaE"
 

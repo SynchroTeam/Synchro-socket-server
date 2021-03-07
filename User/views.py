@@ -14,7 +14,6 @@ import jwt
 @permission_classes([customIsAuthenticated])
 def create_user(request):
 
-    print('Create user')
     # get token Payload
     token = request.headers['Authorization']
     tokenPayload = tokenDecoder(token)
@@ -40,8 +39,6 @@ def create_user(request):
 
 
     JWT_USER = jwt.encode(jwt_payload, user_key, algorithm="HS256")
-
-    print(JWT_USER)
 
     return Response({
         'JWT_USER': JWT_USER
