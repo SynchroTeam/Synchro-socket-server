@@ -65,5 +65,5 @@ docker-compose  -f docker-compose-test.yml up
 
 ### With Bash
 ``` bash 
-python3 manage.py runserver
+python3 manage.py test
 ```

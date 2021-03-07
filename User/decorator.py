@@ -8,11 +8,15 @@ class customIsAuthenticated(BasePermission):
 
     def has_permission(self,request,*args,**kwargs):
         
-        accessToken = request.headers['Authorization']
+        if request.headers.get('Authorization'):
+            accessToken = request.headers['Authorization']
 
-        try:
-            decodeJTW = tokenDecoder(accessToken)
-            return True
-        except:
-            self.message = 'Token is expired' 
+            try:
+                decodeJTW = tokenDecoder(accessToken)
+                return True
+            except:
+                self.message = 'Token is expired' 
+                return False
+        else:
+            self.message = 'Token is set' 
             return False
