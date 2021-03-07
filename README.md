@@ -1,5 +1,5 @@
 # Synchro server 
-A simple service with a microservice architecture in the same source code. build faster, build smarter, Websocket is easy and accessible with Synchro server. For real time applications.
+A simple service with a microservice architecture in the same source code. build faster, build smarter, Websocket is easy and accessible with Synchro server. For real time application.
 
 
 <br>
