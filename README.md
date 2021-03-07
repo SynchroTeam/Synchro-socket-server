@@ -23,7 +23,6 @@ First create the docker-compose network, then launch the Server
 docker-compose up
 ```
 <br>
-<br>
 
 ### With Bash
 Set .ENV file
@@ -52,8 +51,12 @@ Launch the Server
 python3 manage.py runserver
 ```
 
+<br>
+<br>
 
-## Run development environment
+## Run test environment
+<br>
+<br>
 
 ### With Docker compose
 ``` bash 
