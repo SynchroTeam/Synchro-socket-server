@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  account:
+  backend:
     container_name: synchro-server
     tty: true
     build: .

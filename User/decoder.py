@@ -7,4 +7,3 @@ def tokenDecoder(token):
         return jwt.decode(token, config('SECRET_KEY'), algorithms=["HS256"]);
     except:
         return jwt.decode(token, config('SECRET_KEY'), algorithms=["HS256"]);
-
