@@ -11,8 +11,8 @@ import jwt
 # Create your views here.
 
 @api_view(['POST'])
+@permission_classes([customIsAuthenticated])
 def CreateChannel(request):
-    permission_classes = [customIsAuthenticated]
 
     # get token Payload
     token = request.headers['Authorization']

@@ -42,6 +42,7 @@ DEFAULT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels'
 ]
 
 THIED_PARTY_APPS = [
@@ -92,6 +93,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Django.wsgi.application'
+ASGI_APPLICATION = 'Django.asgi.application'
 
 
 # Database

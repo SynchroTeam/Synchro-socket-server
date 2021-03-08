@@ -7,7 +7,7 @@ class customIsAuthenticated(BasePermission):
     message = 'Token expired'
 
     def has_permission(self,request,*args,**kwargs):
-        
+
         accessToken = request.headers['Authorization']
 
         try:
