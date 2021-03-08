@@ -6,6 +6,7 @@ class WSUserConnectTest(TestCase):
 
     async def test_details(self):
 
+        # Payload
         ID_CHANNEL = 55
         JWT_USER = 'hdugyy4'
         BLUEPRINT = '23423432'
