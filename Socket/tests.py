@@ -6,7 +6,11 @@ class WSUserConnectTest(TestCase):
 
     async def test_details(self):
 
-        communicator = WebsocketCommunicator(WSUser.as_asgi(), "/ws/some_url/")
+        ID_CHANNEL = 55
+        JWT_USER = 'hdugyy4'
+        BLUEPRINT = '23423432'
+
+        communicator = WebsocketCommunicator(WSUser.as_asgi(), f"/ws/some_url/{ID_CHANNEL}/{JWT_USER}/{BLUEPRINT}/")
         connected, subprotocol = await communicator.connect()
         assert connected
         # Test sending text
