@@ -106,6 +106,13 @@ DATABASES = {
     }
 }
 
+# https://channels.readthedocs.io/en/stable/topics/channel_layers.html#in-memory-channel-layer
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
