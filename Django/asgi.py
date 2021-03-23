@@ -11,17 +11,17 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+from channels.sessions import SessionMiddlewareStack
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter
 from channels.routing import URLRouter
-
 from Socket.urls import ws_urlpatterns
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Django.settings')
 
 application = ProtocolTypeRouter({
     'http': get_asgi_application(),
-    'websocket': AuthMiddlewareStack(
+    'websocket': SessionMiddlewareStack(
         URLRouter(
             ws_urlpatterns
         )

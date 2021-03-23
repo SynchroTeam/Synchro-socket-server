@@ -6,5 +6,5 @@ from django.urls import path
 from .user import WSUser
 
 ws_urlpatterns = [
-    path('ws/some_url/<uri>/<ua>/<b>/', WSUser.as_asgi())
+    path('ws/some_url/<ID>/<USER_JWT>/<BLUEPRINT>/<connection_id>/', WSUser.as_asgi())
 ]

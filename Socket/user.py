@@ -1,35 +1,30 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 import json
-from time import sleep
-from random import randint
 
 class WSUser(AsyncWebsocketConsumer):
 
     async def connect(self):
 
-        self.room_name = self.scope['url_route']['kwargs']['uri']
-        self.USER_JWT = self.scope['url_route']['kwargs']['ua']
-        self.BLUEPRINT = self.scope['url_route']['kwargs']['b']
+        self.room_name = self.scope['url_route']['kwargs']['ID']
+        self.USER_JWT = self.scope['url_route']['kwargs']['USER_JWT']
+        self.BLUEPRINT = self.scope['url_route']['kwargs']['BLUEPRINT']
+        self.connection_id = self.scope['url_route']['kwargs']['connection_id']
 
 
         self.room_group_name = 'chat_%s' % self.room_name
         
+        await self.accept()
+        
+        self.scope["session"]["USER_JWT"] = self.USER_JWT
+        self.scope["session"]["connection_id"] = self.connection_id
+
 
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
         )
         
-        await self.accept()
-
-        await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                'type': 'chatroom_message',
-                'message': {},
-                'username': {},
-            }
-        )
+        
 
 
     async def disconnect(self, close_code):
@@ -39,28 +34,26 @@ class WSUser(AsyncWebsocketConsumer):
         )
 
     async def receive(self, text_data):
-        
-        #text_data_json = json.loads(text_data)
-        
-        #message = text_data_json['message']
-        #username = text_data_json['username']
 
         await self.channel_layer.group_send(
             self.room_group_name,
             {
                 'type': 'chatroom_message',
                 'message': text_data,
-                'username': "username",
+                'username': self.scope["session"]["USER_JWT"],
+                'idConnection': self.scope["session"]["connection_id"]
             }
         )
 
     async def chatroom_message(self, event):
         message = event['message']
         username = event['username']
+        idConnection = event['idConnection']
 
         await self.send(text_data=json.dumps({
             'message': message,
             'username': username,
+            'idConnection': idConnection
         }))
 
     pass

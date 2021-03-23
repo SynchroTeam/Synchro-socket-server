@@ -7,6 +7,7 @@ import jwt
 from decouple import config
 import uuid
 
+
 # https://github.com/Tivix/django-rest-auth/issues/464
 class UserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
@@ -51,7 +52,6 @@ class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
     # around the globe.
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
-
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
@@ -67,14 +67,14 @@ class User(AbstractUser):
         
         decodeJTW = jwt.decode(str(accessToken), config('SECRET_KEY'), algorithms=["HS256"]);
 
-        permisions = []
+        permissions = []
         for  p in list(self.get_group_permissions()):
-            permisions.append(p.replace('.',' | '))
+            permissions.append(p.replace('.',' | '))
 
         groups =  list(self.groups.values_list('name',flat = True)) # QuerySet Object
 
         # for JTW payload
-        decodeJTW['PERMISIONS'] = permisions
+        decodeJTW['PERMISSIONS'] = permissions
         # decodeJTW['groups'] = groups
         decodeJTW['USERNAME'] = self.username
         decodeJTW['ID_CONSUMER'] = str(self.id)

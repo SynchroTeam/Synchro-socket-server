@@ -10,6 +10,8 @@ import jwt
 
 # Create your views here.
 
+
+
 @api_view(['POST'])
 @permission_classes([customIsAuthenticated])
 def create_user(request):
