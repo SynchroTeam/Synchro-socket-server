@@ -5,3 +5,7 @@ python-decouple==3.4
 # Swagger
 django-rest-swagger==2.2.0
 channels==3.0.3
+
+asgiref ==3.2.10
+pytz==2020.1
+sqlparse==0.3.1
