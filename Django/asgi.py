@@ -18,13 +18,12 @@ from channels.routing import ProtocolTypeRouter
 from channels.routing import URLRouter
 from Socket.urls import ws_urlpatterns
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Django.settings')
 
 application = ProtocolTypeRouter({
-    ## 'http': get_asgi_application(),
-    'websocket': SessionMiddlewareStack(
+    # (http->django views is added by default)
+    'websocket': AuthMiddlewareStack(
         URLRouter(
             ws_urlpatterns
         )
-    )
+    ),
 })
