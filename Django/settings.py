@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'Django.settings'
+
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
