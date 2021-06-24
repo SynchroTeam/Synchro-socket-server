@@ -8,8 +8,9 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 """
 
 import os
+from django.core.asgi import get_asgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Django.settings')
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+
 django_asgi_app = get_asgi_application()
 
 
@@ -21,7 +22,8 @@ from Socket.urls import ws_urlpatterns
 
 
 application = ProtocolTypeRouter({
-    # (http->django views is added by default)
+     # Django's ASGI application to handle traditional HTTP requests
+    "http": django_asgi_app,
     'websocket': AuthMiddlewareStack(
         URLRouter(
             ws_urlpatterns
