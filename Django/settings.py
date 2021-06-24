@@ -34,31 +34,21 @@ ALLOWED_HOSTS = [
 ]
 
 
-
-
-DEFAULT_APPS = [
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels'
-]
-
-THIED_PARTY_APPS = [
+    'channels', 
     'rest_framework',
-    'rest_framework_swagger'
-]
-
-LOCAL_APPS = [
+    'rest_framework_swagger',
     'Consumer',
     'Socket',
     'Channel',
     'User'
 ]
-
-INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIED_PARTY_APPS
 
 
 AUTH_USER_MODEL = 'Consumer.User'
