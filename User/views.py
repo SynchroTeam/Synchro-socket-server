@@ -7,9 +7,9 @@ from .decoder import tokenDecoder
 import hashlib 
 import uuid
 import jwt
-
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 # Create your views here.
-
 
 
 @api_view(['POST'])
@@ -44,4 +44,26 @@ def create_user(request):
 
     return Response({
         'JWT_USER': JWT_USER
+    }, status = 200)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def nice(request):
+    
+    channel_layer = get_channel_layer()
+    
+    ROOM = request.POST.get("ROOM")
+    MESSAGE = request.POST.get("MESSAGE")
+    
+    async_to_sync(channel_layer.group_send)(
+        'chat_'+ROOM,
+        {
+            'type': 'chatroom_message', 
+            'message': MESSAGE,
+            'username': "3bad625d5ae81ee4194a960d722fdc05",
+            'idConnection': "bad625d5ae81ee4194a960d722fdc054"
+        }
+    )
+    
+    return Response({
     }, status = 200)
